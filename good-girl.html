@@ -436,8 +436,12 @@ He looks at you for a long moment, and something in the frozen-lake eyes shifts.
 
 It is the closest thing to kindness anyone has offered you tonight. He walks you to your door and checks the broken lock himself.
 
-You sleep for three hours and dream about a stranger’s hand on the small of your back.`,
-    choices: [{ label: "Morning", to: "marco" }]
+You fall into bed in the midnight blue dress and sleep for three hours, dreaming about a stranger’s hand on the small of your back.
+
+Then a fist knots in the blankets and rips them away.
+
+“Get up.” Marco’s grip closes around your arm and hauls you out of bed. Your feet tangle in the silk. The room spins. “Get up. We need to talk about your night.”`,
+    choices: [{ label: "Face Marco", to: "marco" }]
   },
   morning: {
     act: 1, ch: "3–4", pov: "HER", title: "A Morning of Revelation",
@@ -470,7 +474,7 @@ You spent the night with the man you were sent to spy on. Every kiss, every word
   },
   marco: {
     act: 1, ch: "4–5", pov: "HER", title: "A Tangled Web",
-    text: s => `${s.f.sentHome
+    text: s => `${(s.f.sentHome || s.f.refusedRide)
       ? "He drags you barefoot into the living room, still in the creased midnight blue dress, and shoves you onto the couch."
       : "Marco is standing in your living room when you get home."}
 
