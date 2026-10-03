@@ -570,47 +570,53 @@ Nicolo does not look convinced. But Dante says, “Good girl,” and for the fir
 
   herFirst: {
     act: 1, ch: "6", pov: "HER", title: "The One Who Waited",
-    decision: "What you give him",
-    text: s => `The penthouse is quiet. Dante shuts the door behind you and does not touch you right away. He only stands there, loosening his cuffs, looking at you as if you were a question he has been trying to answer all night.
+    text: s => `The penthouse is quiet. Dante shuts the door and loosens his cuffs, and he looks at you like he is trying to work something out.
 
-“You would not say it,” he says. “In the kitchen, or at the gate, or at dinner. Every other woman gives me that word before I ask for it.” A slow breath. “I have been trying to decide whether I am insulted.”
+“You never said it,” he says. “Not in the kitchen, not at dinner. Every other woman gives me that word before I ask for it.”
 
-“Are you?”
+“Are you angry?”
 
-“No.” He crosses the room and takes your face in his hands. “I am intrigued. Do you know how long it has been since anyone told me no?”
+“No.” He steps closer. “I want to hear you say it. But only when you mean it.”
 
 ${s.f.leanedIn
-      ? "You did not mean to lean into his palm, but you do, and his eyes darken."
-      : "You keep your face still, the way you promised yourself, but your pulse is hammering against his thumb and he can feel every beat."}
+      ? "You did not mean to lean into his hand, but you do, and his eyes darken."
+      : "You keep your face still, the way you promised yourself, but your pulse is pounding under his thumb and he can feel it."}
 
-The kiss starts careful and ends anything but. Your back finds the wall. His mouth is at your throat, and your hands, with a mind of their own, are knotted in his shirt. When he lifts you and carries you to a bed bigger than your whole apartment, you go with him.
+You think about Marco. You think about your mother. Then you stop thinking, because his hand is warm on your cheek and for once nobody is telling you what to do.
 
-The emerald dress he sent for dinner slips away, and the cool air raises goose bumps along your arms. He sees you hesitate, just for a breath, and he stills.
+“Daddy,” you whisper.
 
-“Layla.” He studies your face. “Talk to me.”
+His whole body goes tight. “Say it again.”
 
-You were going to hide it. You had a plan, which was to be brave and quiet and let him think you were someone you were not. But he is looking at you the way no one has ever looked at you, and the lie dies in your mouth.
+“Daddy.”
 
-“I’ve never done this,” you whisper. “You would be my first.”
+He kisses you slowly, and then not slowly at all. Your back meets the wall. His mouth is on your throat, and your hands are in his shirt. He carries you to a bed bigger than your whole apartment, and you go with him. The emerald dress slips away, and the cool air raises goose bumps along your arms.
 
-The room goes very quiet.
+You hesitate, just for a breath. He feels it. He stops.
 
-“Never.” It is not quite a question. His hands, so sure a moment ago, are gentle against your jaw. “You let me believe…” He stops. He closes his eyes. When he opens them, something in them has shifted from hunger to something more dangerous, something like reverence. “All night I thought I was taking something from you. You were saving this. And you kept your no for me, when everyone else got a yes.”
+“Layla. Talk to me.”
 
-“It wasn’t about you,” you say, and it is the weakest lie of your life.
+You planned to hide it. But he is looking at you like he is afraid of hurting you, and you can’t do it.
 
-“It is about me now.” He kisses your forehead, your eyelids, the corner of your mouth. “You are not a thing I am owed, Layla. You are a gift I have not earned. So I will earn it. Slowly. Tell me when to stop, and I will stop, and I will not be angry.”
+“I’ve never done this,” you whisper. “You’d be my first.”
 
-He is patient in ways that undo you. He tells you what he will do before he does it. He asks, and he waits for your answer, every time. There is one sharp, startled moment and he goes entirely still, murmuring against your hair until the ache melts into something warm. Then the slow climb, and the long, shuddering fall, and his arms closing around you as though you were something that might break, and something he will never let go.
+The room is very quiet.
 
-Afterward he lies awake with you tucked against his chest. “Nobody has ever been first for me in anything,” he says into the dark. “Not in twenty years. I find I like it.”
+“Never?” He closes his eyes. When he opens them, the hunger is still there, but something else has come in under it. “I thought I was the one taking something tonight.”
 
-You think of Marco’s phone in your bag. You think of the tape you have not found yet, and the promise you made to a man who owns your mother’s breath.
+“It’s okay. I want to.”
 
-You could say the word now. It would cost you nothing, and it would mean everything.`,
+“I know you do.” He kisses your forehead. “I want to do this right. If you want me to stop, say so, and I will. Not angry. Just stop.”
+
+You nod. He keeps his word. He tells you what he is going to do before he does it, and he waits for you to say yes every time. There is one sharp moment, and he goes completely still until you move against him. Then the slow climb and the long, shuddering fall, and his arms around you afterward like he is never letting go.
+
+“Nobody has ever been first for me in anything,” he says into the dark. “I like it.”
+
+You think of the phone in your bag, the one Marco will call. You could still tell him everything. You could still run.
+
+You stay.`,
     choices: [
-      { label: "“Thank you… Daddy.” Say it because you want to.", to: "warning", fx: s => { s.trust += 1; s.f.daddy = true; s.f.firstTime = true; s.f.herFirst = true; } },
-      { label: "Say only his name. Keep the rest for yourself, for now.", to: "warning", fx: s => { s.nerve += 1; s.f.firstTime = true; s.f.herFirst = true; } }
+      { label: "Close your eyes and fall asleep in his arms.", to: "warning", fx: s => { s.trust += 1; s.f.daddy = true; s.f.firstTime = true; s.f.herFirst = true; } }
     ]
   },
 
