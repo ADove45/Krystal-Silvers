@@ -499,7 +499,32 @@ ${s.f.sentHome
       : "You bury your face in the petals to hide your smile."}
 
 That night Dante sits across a candlelit table. “I might have let you go,” he says. “But now I want to make you mine.”`,
-    choices: [{ label: "Hear his terms", to: "terms" }]
+    choices: [{ label: "Hear his terms", to: s => (s.f.sentHome || s.f.refusedRide) ? "turmoil" : "terms" }]
+  },
+  turmoil: {
+    act: 1, ch: "5", pov: "HER", title: "The Wrong Man to Want",
+    decision: "How to play it",
+    text: s => `“Make you mine.” The words settle over the table like smoke.
+
+You should laugh. You should say *no*. You are here because a man with a split-lipped mother in his pocket put you here, and the man across from you is the target, the job, the knife you are meant to hold against his back.
+
+${s.f.sentHome
+      ? "But you remember the kitchen, and the pasta water ticking in the pot. You said no to him and he stepped back. Nobody has ever stepped back for you."
+      : "But you remember the ballroom, and the hand at your back, and how it felt to be seen by him before you knew his name. You walked away and he let you. Nobody has ever let you."}
+
+Dante cuts into his steak as if the world is his to carve. Candlelight catches the gray at his temples, the careful hands. He asks about your father, and he listens. He listens to the answer. Your throat closes, and you realize with horror that you are *happy*, that for a single breath you forgot to be afraid.
+
+And then you remember Marco’s hand across your cheek, and your mother’s small sound, and the phone in your bag that you must answer.
+
+*I want to say no.* You want to push back your chair and walk out into the cold and never see him again. But no is a door that opens onto your mother’s blood. Marco has made sure you have no way out but forward, and forward means walking straight toward a man you are already, God help you, beginning to love.
+
+He is waiting. The whole restaurant seems to be waiting.
+
+You have to decide who you will be at this table.`,
+    choices: [
+      { label: "Let yourself lean into it. The part and the feeling can be one thing.", to: "terms", fx: s => { s.trust += 1; s.f.leanedIn = true; } },
+      { label: "Keep your face still and your heart locked. Give him only what the job needs.", to: "terms", fx: s => { s.nerve += 1; s.secrets += 1; s.f.guardedDinner = true; } }
+    ]
   },
   terms: {
     act: 1, ch: "5–6", pov: "HER", title: "Champagne Wishes and Foolish Dreams",
