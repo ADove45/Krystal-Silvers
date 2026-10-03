@@ -379,8 +379,8 @@ He carries you down a hallway you barely see. A door. Lamplight. The slow, delib
 
 You do. And the rest of the night belongs to the two of you alone: his hands learning you, your name on his lips, the silk on the floor, the slow climb and the long, shuddering fall. Nothing in your life has ever felt so right, or so dangerous.`,
     choices: [
-      { label: "Hold on to him. Stay until morning.", to: "morning", fx: s => { s.trust += 1; } },
-      { label: "Memorize every second. Tonight is the only thing that is yours.", to: "morning", fx: s => { s.nerve += 1; } }
+      { label: "Hold on to him. Stay until morning.", to: "morning", fx: s => { s.trust += 1; s.f.stayed = true; } },
+      { label: "Memorize every second. Tonight is the only thing that is yours.", to: "morning", fx: s => { s.nerve += 1; s.f.guarded = true; } }
     ]
   },
   antoncar: {
@@ -400,25 +400,29 @@ You sleep for three hours and dream about a stranger’s hand on the small of yo
   },
   morning: {
     act: 1, ch: "3–4", pov: "HER", title: "A Morning of Revelation",
-    text: s => `${s.f.daddy
-      ? "“Good girl,” he whispers against your hair, and his thumb traces your lower lip."
-      : "He laughs, low, into your shoulder. “Before sunrise. I promised.” He kisses you again, and the last of the argument dissolves."}
+    text: s => `${s.f.stayed
+      ? "You wake tangled in him, his arm heavy across your waist, his breath warm against your shoulder. For a few perfect seconds nothing exists but the quiet."
+      : "You wake before he does, and you lie very still, memorizing the way the morning light falls across his face. You have told yourself this is only one night. Your heart has not been told."}
 
-The pasta goes cold on the counter. You have never been wanted like this. You fall asleep with his arm around you, in a bed you have never seen before.
+${s.f.daddy
+      ? "When he stirs, he pulls you closer. “Good morning, good girl,” he murmurs against your hair, and his thumb traces your lower lip. Last night you gave him that word, and it still sounds like a promise."
+      : "When he stirs, he finds you watching and smiles, slow and lazy. “Before sunrise,” he says. “I promised, didn’t I?” He kisses you, and the question you refused to let go of last night melts a little more."}
 
-Sunrise comes and goes and he still hasn’t told you.
+Sunrise has come and gone, and he still hasn’t told you his name.
 
-At breakfast he calls himself a problem solver. He says he has a daughter and she is his world. Then his phone rings.
+He makes breakfast in nothing but last night’s trousers, and you steal one of his shirts. It swallows you. You have never been looked at the way he looks at you in it.
+
+At the table he calls himself a problem solver. He says he has a daughter and she is his world. Then his phone rings.
 
 “Don’t worry, Sophia. I’ll handle it.”
 
-The pieces fall into place and your coffee goes sour in your mouth.
+The pieces fall into place and your coffee goes sour in your mouth. Sophia. The gala. The man who danced with you in the hallway.
 
 “You’re Sophia DeLuca’s father. You’re *Dante DeLuca*.”
 
 “Yes.” His eyes do not leave your face. “I see my reputation precedes me.”
 
-You just spent the night with the man you were sent to spy on.`,
+You spent the night with the man you were sent to spy on. Every kiss, every word, every whispered thing you said in the dark is now something Marco would kill to hear.`,
     choices: [{ label: "“I should go. Thank you for breakfast.”", to: "marco" }]
   },
   marco: {
