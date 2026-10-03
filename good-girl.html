@@ -502,8 +502,8 @@ ${s.f.sentHome
 
 ${(s.f.sentHome || s.f.refusedRide)
       ? "That night Dante sits across a candlelit table. “I might have let you go,” he says. “But now I want to make you mine.”"
-      : "That night his car comes for you. You cover the mark on your cheek with makeup and tell yourself you are only going to dinner."}`,
-    choices: [{ label: "Go to dinner", to: s => (s.f.sentHome || s.f.refusedRide) ? "turmoil" : "dinnerHot" }]
+      : "That night his car comes for you. You cover the mark on your cheek with makeup and tell yourself you are only going to dinner. You do not believe it."}`,
+    choices: [{ label: "Get in the car", to: s => (s.f.sentHome || s.f.refusedRide) ? "turmoil" : "dinnerHot" }]
   },
   turmoil: {
     act: 1, ch: "5", pov: "HER", title: "The Wrong Man to Want",
@@ -552,20 +552,22 @@ His shoulders ease, just a little. “Good,” he says quietly. “Then come hom
     choices: [{ label: "Go with him", to: "herFirst", fx: s => { s.trust += 1; } }]
   },
   dinnerHot: {
-    act: 1, ch: "5", pov: "HER", title: "Hotter Than Dinner",
-    text: `He does not wait for the restaurant. In the back of the car his hand finds your knee, then slides higher, slow, and his mouth is against your ear.
+    act: 1, ch: "5", pov: "HER", title: "Skip Dinner",
+    text: `The partition slides up the moment the door shuts. Dante does not say hello. He hauls you across the leather seat and into his lap, one hand fisted in your hair, and kisses you like he has been starving all day.
 
-“You cover it well,” he says, brushing his thumb over the makeup on your cheek, and your breath stops. “Whoever did that will answer to me. But not tonight. Tonight I want you to forget it.”
+“Dinner can wait,” he says against your mouth. “Driver. Around the block. Twice.”
 
-Dinner is barely touched. He feeds you from his fork, watching your mouth. Under the table his palm settles on your thigh and stays there through the whole second course. By dessert you cannot remember your own name.
+You should laugh. Instead you are tearing at his tie. His palms push your skirt up your thighs and his thumbs press the soft inside of them, and the sound you make is nothing you have ever heard come out of yourself. The city slides past the tinted glass, red light, green light, your knees on either side of him, his mouth at your throat where everyone will see tomorrow.
 
-“Daddy,” you whisper, and the word sets something loose in him.
+“Look at me,” he growls when you try to hide. “I want to watch you.”
 
-He takes you home. The elevator doors have barely closed before he has you against the mirrored wall, one hand knotted in your hair and the other dragging the zipper of your dress down. His mouth is hot at your throat. “All day,” he says. “I have wanted you all day.”
+By the time the car stops, your dress is wrecked and your breath is gone, and he is smiling like the devil.
 
-This time there is no hesitation. You know what his hands feel like now. You know how he says your name when he loses control. You pull him toward the bedroom by his tie, and he laughs, rough and delighted, and then he is not laughing at all.
+He does not make it upstairs. In the elevator he hits the stop button with the flat of his hand and has you against the mirrored wall before the lights stop flickering. Your own reflection stares back at you, flushed, wild, hair coming down, and over your shoulder his dark eyes meet yours in the glass. “Watch,” he says. “That’s who I see.”
 
-It is faster than the first time, and hungrier. He lays you back on the sheets and takes his time anyway, learning what makes you gasp, what makes you arch, what makes you beg. You do beg. He tells you how good you are, how perfect, how much he has wanted this, and when you finally come apart he follows with your name in his mouth, his arms locked around you like he is afraid you might vanish.`,
+Your legs hook around his waist. His teeth find your shoulder. Every part of you is on fire, and he knows exactly how to fan it, a slow roll of his hips, a hand sliding between your bodies, your name growled low until you are clawing at his back and begging. “Daddy, please.” “There,” he says. “Good girl. Say it again.” You say it again. You say it until the mirror fogs and your knees give out and he catches you.
+
+He carries you the rest of the way. The bedroom door is barely shut before the rest of your clothes are gone, and then there is nothing between you but heat. It is nothing like the first time. There is no gentleness left in him, and you don’t want any. He pins your wrists above your head and takes his time anyway, his mouth following the line of every place he has already touched. He turns you, lifts you, makes you say what you want, then gives it to you harder than you asked. You cry out his name loud enough for the whole building to know. He grips your hip and holds on, and the last of his control breaks with a low groan against your ear. You shatter, and he shatters with you, and for one long, shaking minute there is no Marco, no mother, no spy, only this.`,
     choices: [{ label: "Stay in his arms", to: "terms", fx: s => { s.trust += 1; s.f.hotNight = true; } }]
   },
   terms: {
