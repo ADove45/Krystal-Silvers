@@ -242,9 +242,13 @@ They drag your mother in. Her lip is split. “Layla, I’m so sorry. I didn’t
 
 “And if I don’t?”
 
-His smile widens. “Then your mother will pay the price.”`,
+His smile widens. “Then your mother will pay the price.”
+
+By the door stands the tall blond man who brought you here. He has not touched you, not once. He has not blinked either. His eyes are the pale grey of a frozen lake, and they are fixed on you as if he is weighing how much you will cost.
+
+“Anton,” Marco says, without turning. “She is going to say yes.”`,
     choices: [
-      { label: "“I’ll do it. Just don’t hurt her.”", to: "gala" },
+      { label: "“I’ll do it. Just don’t hurt her.”", to: "transform" },
       { label: "“No. Find someone else.”", to: "refuse", fx: s => { s.nerve += 1; } }
     ]
   },
@@ -256,15 +260,44 @@ The sound she makes is small. That is the worst part.
 
 “Stop. *Stop.* I’ll do it.”
 
-“Of course you will.” Marco straightens his cuff. “But I like that you tried. It tells me you will be convincing.” He gestures at the tall blond man by the door, the one with eyes like a frozen lake. “Anton will be your handler. Anton will make sure you stay on task.”
+“Of course you will.” Marco straightens his cuff. “But I like that you tried. It tells me you will be convincing.” He gestures at the man by the door, the one with eyes like a frozen lake. “Anton will be your handler. Anton will make sure you stay on task.”
+
+Anton does not smile. He only opens the door for you, and you walk through it.
 
 You learn something tonight that you will need later. Saying no costs. You will have to choose carefully where to spend it.`,
-    choices: [{ label: "Let the stylists do their work", to: "gala" }]
+    choices: [{ label: "Follow Anton", to: "transform" }]
+  },
+  transform: {
+    act: 1, ch: "1", pov: "HER", title: "The Girl in the Mirror",
+    text: s => `${s.nerve > 0
+      ? "The elevator is mirrored on three sides. You watch yourself not cry, and you are proud of that much."
+      : "The elevator is mirrored on three sides. You watch a frightened girl in pajamas look back at you, and you look away."}
+
+“Layla,” he says. It is the first word he has said to you. “Anton. I am the one who keeps you alive, so you will do what I say, when I say it.” A pause. “And I will tell you the truth when you ask. That is more than Marco will give you.”
+
+“Is my mother safe?”
+
+“For now. Tonight you make that last.”
+
+The car takes you to a salon that was emptied for you. Three stylists are waiting, and nobody asks your name.
+
+They wash the night out of your hair. The comb pulls. A brush sweeps color over your cheekbones until you look like a stranger who has never been afraid. Your dark hair is swept up and pinned, and a single curl is left loose against your neck.
+
+Then the dress. Midnight blue, silk that was cut for someone else and fits like it was cut for you. It is cold against your skin. The zipper rises, and a stylist steps back with her hand over her mouth.
+
+“Look,” Anton says.
+
+The girl in the mirror has your eyes. Everything else is new. She stands straighter. She looks like someone who belongs in a room full of money, and someone who could take it apart.
+
+His reflection stands behind yours. For half a second the frozen lake gives, and you see something that is almost sorrow.
+
+“Stay close to me,” he says. “If you are going to be brave, be brave quietly.”`,
+    choices: [{ label: "Take his arm. Walk into the gala.", to: "gala" }]
   },
   gala: {
     act: 1, ch: "1", pov: "HER", title: "Midnight Blue",
     decision: "At the charity gala",
-    text: `By midnight you do not recognize yourself. Your dark hair is swept up. The dress is midnight blue and fits like a second skin. Anton’s hand is heavy on your back as he walks you into a ballroom full of the city’s elite.
+    text: `By midnight the doors open and Anton’s hand is heavy on your back as he walks you into a ballroom full of the city’s elite. Heads turn. For the first time in your life they are turning for you.
 
 Sophia DeLuca stands across the room, furious. In college she had paparazzi and a gaggle of rich friends. You had your late father’s tuition money and nothing else. You doubt she knows your name.
 
