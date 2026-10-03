@@ -351,7 +351,7 @@ You are breathless. “Thank you, Mister…”
 His hand cups your cheek. “Call me Daddy.”`,
     choices: [
       { label: "“Thank you… Daddy.”", to: "firstnight", fx: s => { s.trust += 1; s.f.daddy = true; } },
-      { label: "“Your name first. Then we’ll see.”", to: "firstnight", fx: s => { s.nerve += 1; } }
+      { label: "“Your name first. I’m not calling you that.”", to: "sentHome", fx: s => { s.nerve += 1; s.f.sentHome = true; } }
     ]
   },
   firstnight: {
@@ -382,6 +382,33 @@ You do. And the rest of the night belongs to the two of you alone: his hands lea
       { label: "Hold on to him. Stay until morning.", to: "morning", fx: s => { s.trust += 1; s.f.stayed = true; } },
       { label: "Memorize every second. Tonight is the only thing that is yours.", to: "morning", fx: s => { s.nerve += 1; s.f.guarded = true; } }
     ]
+  },
+  sentHome: {
+    act: 1, ch: "3–4", pov: "HER", title: "The Wrong Answer",
+    text: `His thumb stills against your cheek. For a long moment the kitchen is silent except for the pasta water ticking in the pot.
+
+“No,” you say. It comes out softer than you meant. “Not until I know who you are.”
+
+You expect anger. Men like him are not told no. Instead the corner of his mouth lifts, and something in his eyes darkens with respect and something else, something that makes your knees weak.
+
+“Fair,” he says. He steps back, and the air rushes into the space he leaves. “Then I will not take what you have not decided to give. Get your coat, little one. I’ll take you home.”
+
+The ride back is quiet. He does not touch you. He walks you up to your door, to the lock that was splintered only hours ago, and lingers there with his hand braced on the frame above your head.
+
+“I still owe you a name,” he says.
+
+“You promised before sunrise.”
+
+“I did.” His mouth brushes your forehead, the lightest kiss, almost a question. “Then I will have to find you again.”
+
+He is gone before you can answer. You fall into bed in the midnight blue dress, burning, furious at yourself, and certain that you have just let the most dangerous door in your life swing shut.
+
+You sleep for three hours.
+
+Then a hand fists in the blankets and rips them away.
+
+“Get up.” Marco’s grip closes around your arm and hauls you out of bed. Your feet tangle in the silk. The room spins. “Get up, you little liar. We need to talk about where you were last night.”`,
+    choices: [{ label: "Face Marco", to: "marco" }]
   },
   antoncar: {
     act: 1, ch: "2", pov: "HER", title: "The Plan",
@@ -427,9 +454,13 @@ You spent the night with the man you were sent to spy on. Every kiss, every word
   },
   marco: {
     act: 1, ch: "4–5", pov: "HER", title: "A Tangled Web",
-    text: s => `Marco is standing in your living room when you get home.
+    text: s => `${s.f.sentHome
+      ? "Marco drags you into the living room by the arm and shoves you toward the couch."
+      : "Marco is standing in your living room when you get home."}
 
-${s.f.refusedRide
+${s.f.sentHome
+      ? "“A whole gala, a whole night, and you walk in with nothing.” His voice is calm, and that is the worst part. “You left with a stranger. I had Anton watching the doors. Do you know how that looks?”"
+      : s.f.refusedRide
       ? "“A whole gala and you bring me nothing.”"
       : "“Where the hell have you been?” You tell him you stayed with a friend. You tell him your phone died."}
 
@@ -441,7 +472,9 @@ When you open the door, Anton is standing there with flowers.
 
 “These were delivered for you,” he says, flat. “They’re from Dante.”
 
-${s.f.refusedRide
+${s.f.sentHome
+      ? "The card reads: *You wouldn’t say it. I find I liked that. Dinner. Tonight. — Dante DeLuca.* So that is who he was."
+      : s.f.refusedRide
       ? "The card reads: *You said you couldn’t. I’d like to hear why. Dinner. — D. DeLuca.* So that is who he was."
       : "You bury your face in the petals to hide your smile."}
 
