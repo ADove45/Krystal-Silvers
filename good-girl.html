@@ -484,7 +484,9 @@ ${s.f.sentHome
       ? "“A whole gala and you bring me nothing.”"
       : "“Where the hell have you been?” You tell him you stayed with a friend. You tell him your phone died."}
 
-His hand comes across your cheek so fast you don’t see it. “Next time, your mother feels that.”
+${(s.f.sentHome || s.f.refusedRide)
+      ? "He catches your chin hard enough to hurt. “Fix this. Next time, your mother pays for it.”"
+      : "His hand comes across your cheek so fast you don’t see it. “Next time, your mother feels that.”"}
 
 You cry in the shower until the water runs cold. Then you make a decision. You will play the part, but you will not play his game. Your father had friends he trusted. You will find them and get your mother out.
 
@@ -526,11 +528,36 @@ You have to decide who you will be at this table.`,
       { label: "Keep your face still and your heart locked. Give him only what the job needs.", to: "herFirst", fx: s => { s.nerve += 1; s.secrets += 1; s.f.guardedDinner = true; } }
     ]
   },
+  marcoSlap: {
+    act: 1, ch: "6", pov: "HER", title: "The Price of a Night",
+    text: `You wake before dawn to a buzzing phone. One message, no name: *Downstairs. Now.*
+
+Dante is asleep, one arm still curled around the space where you were. You dress in the dark and ease the door shut behind you.
+
+Anton is waiting at the curb with the engine running. He does not say a word the whole drive, but his jaw is tight, and he does not look at you once.
+
+Marco is in his office when you walk in. He does not get up.
+
+“You spent the night with DeLuca.” He says it pleasantly. “All night. Do you have any idea what I could have done with a night like that? A name. A shipment. A password. And you come to me with nothing, smelling like his soap.”
+
+“He doesn’t talk about business. It’s only been a few days.”
+
+“It’s been a few days and you are in his bed.” He rises. “Then you are not trying hard enough.”
+
+You do not see his hand until it lands. The crack of it rings off the glass. Your cheek goes hot, then numb, then hot again.
+
+“That is for the nothing,” Marco says. “Next time, your mother feels it.”
+
+Behind you, Anton breathes out through his nose, and does not move.
+
+You press your palm to your face and hold your head up. You will not give Marco tears. Not today.`,
+    choices: [{ label: "Go back to Dante", to: "terms", fx: s => { s.f.slapped = true; } }]
+  },
   terms: {
     act: 1, ch: "5–6", pov: "HER", title: "Champagne Wishes and Foolish Dreams",
     decision: "Dante’s terms",
     text: s => `${s.f.herFirst
-      ? "You wake in his bed to find him already awake, watching you, his hand resting on your hip like it belongs there.\n\n“You were a virgin,” he says quietly. “You gave me that, and you did not have to. Do you understand what that does to a man like me?”\n\nYou open your mouth, but he is not finished.\n\n“I am not sharing you. I am not letting anyone touch you, now or ever. You are mine, Layla, and I will not hear otherwise.”\n\n"
+      ? "Dante is awake and dressed when Anton brings you back, standing at the window with his coffee untouched. He turns, and his face changes.\n\n“Who did that?”\n\n“It’s nothing.”\n\n“Layla.” He crosses the room and tilts your chin to the light with two careful fingers, and the muscle in his jaw jumps. “Someone put a hand on you.” His voice is very quiet, which is worse than shouting. “Last night you told me I was your first. Do you understand what that does to a man like me?”\n\nYou open your mouth, but he is not finished.\n\n“I am not sharing you. I am not letting anyone touch you, now or ever. You are mine, Layla, and I will not hear otherwise.”\n\n"
       : ""}“I need you to understand what it means to be my woman,” Dante says. “You belong to me. You are loyal to me, honest with me, obedient to me.”
 
 “And what do I get in return?”
@@ -618,7 +645,7 @@ You think of the phone in your bag, the one Marco will call. You could still tel
 
 You stay.`,
     choices: [
-      { label: "Close your eyes and fall asleep in his arms.", to: "terms", fx: s => { s.trust += 1; s.f.daddy = true; s.f.firstTime = true; s.f.herFirst = true; } }
+      { label: "Close your eyes and fall asleep in his arms.", to: "marcoSlap", fx: s => { s.trust += 1; s.f.daddy = true; s.f.firstTime = true; s.f.herFirst = true; } }
     ]
   },
 
