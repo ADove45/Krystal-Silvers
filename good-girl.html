@@ -543,8 +543,8 @@ Your mother’s split lip. Marco’s smile. Anton outside in a parked car. All o
 
 “Do you accept all of my terms, Layla?”`,
     choices: [
-      { label: "“Yes. I accept.” Say nothing about Marco.", to: "warning", fx: s => { s.trust += 1; s.secrets += 2; } },
-      { label: "“There is something I can’t tell you. Not yet.”", to: "warning", fx: s => { s.trust += 1; s.secrets += 1; s.nerve += 1; s.f.loophole = true; } },
+      { label: "“Yes. I accept.” Say nothing about Marco.", to: s => (s.f.sentHome || s.f.refusedRide) ? "herFirst" : "warning", fx: s => { s.trust += 1; s.secrets += 2; } },
+      { label: "“There is something I can’t tell you. Not yet.”", to: s => (s.f.sentHome || s.f.refusedRide) ? "herFirst" : "warning", fx: s => { s.trust += 1; s.secrets += 1; s.nerve += 1; s.f.loophole = true; } },
       { label: "Tell him everything. Marco. Your mother. The mission.", to: "confession", fx: s => { s.trust += 2; s.f.truth = true; } }
     ]
   },
@@ -565,7 +565,53 @@ When Dante comes back he has taken off his jacket. He crouches in front of your 
 “When I can reach her without getting her killed.” His voice drops. “I keep what’s mine, Layla. That now includes your problems.”
 
 Nicolo does not look convinced. But Dante says, “Good girl,” and for the first time in two days you breathe.`,
-    choices: [{ label: "Move into the penthouse", to: "warning" }]
+    choices: [{ label: "Move into the penthouse", to: s => (s.f.sentHome || s.f.refusedRide) ? "herFirst" : "warning" }]
+  },
+
+  herFirst: {
+    act: 1, ch: "6", pov: "HER", title: "The One Who Waited",
+    decision: "What you give him",
+    text: s => `The penthouse is quiet. Dante shuts the door behind you and does not touch you right away. He only stands there, loosening his cuffs, looking at you as if you were a question he has been trying to answer all night.
+
+“You would not say it,” he says. “In the kitchen, or at the gate, or at dinner. Every other woman gives me that word before I ask for it.” A slow breath. “I have been trying to decide whether I am insulted.”
+
+“Are you?”
+
+“No.” He crosses the room and takes your face in his hands. “I am intrigued. Do you know how long it has been since anyone told me no?”
+
+${s.f.leanedIn
+      ? "You did not mean to lean into his palm, but you do, and his eyes darken."
+      : "You keep your face still, the way you promised yourself, but your pulse is hammering against his thumb and he can feel every beat."}
+
+The kiss starts careful and ends anything but. Your back finds the wall. His mouth is at your throat, and your hands, with a mind of their own, are knotted in his shirt. When he lifts you and carries you to a bed bigger than your whole apartment, you go with him.
+
+The midnight blue silk is gone, and the cool air raises goose bumps along your arms. He sees you hesitate, just for a breath, and he stills.
+
+“Layla.” He studies your face. “Talk to me.”
+
+You were going to hide it. You had a plan, which was to be brave and quiet and let him think you were someone you were not. But he is looking at you the way no one has ever looked at you, and the lie dies in your mouth.
+
+“I’ve never done this,” you whisper. “You would be my first.”
+
+The room goes very quiet.
+
+“Never.” It is not quite a question. His hands, so sure a moment ago, are gentle against your jaw. “You let me believe…” He stops. He closes his eyes. When he opens them, something in them has shifted from hunger to something more dangerous, something like reverence. “All night I thought I was taking something from you. You were saving this. And you kept your no for me, when everyone else got a yes.”
+
+“It wasn’t about you,” you say, and it is the weakest lie of your life.
+
+“It is about me now.” He kisses your forehead, your eyelids, the corner of your mouth. “You are not a thing I am owed, Layla. You are a gift I have not earned. So I will earn it. Slowly. Tell me when to stop, and I will stop, and I will not be angry.”
+
+He is patient in ways that undo you. He tells you what he will do before he does it. He asks, and he waits for your answer, every time. There is one sharp, startled moment and he goes entirely still, murmuring against your hair until the ache melts into something warm. Then the slow climb, and the long, shuddering fall, and his arms closing around you as though you were something that might break, and something he will never let go.
+
+Afterward he lies awake with you tucked against his chest. “Nobody has ever been first for me in anything,” he says into the dark. “Not in twenty years. I find I like it.”
+
+You think of Marco’s phone in your bag. You think of the tape you have not found yet, and the promise you made to a man who owns your mother’s breath.
+
+You could say the word now. It would cost you nothing, and it would mean everything.`,
+    choices: [
+      { label: "“Thank you… Daddy.” Say it because you want to.", to: "warning", fx: s => { s.trust += 1; s.f.daddy = true; s.f.firstTime = true; s.f.herFirst = true; } },
+      { label: "Say only his name. Keep the rest for yourself, for now.", to: "warning", fx: s => { s.nerve += 1; s.f.firstTime = true; s.f.herFirst = true; } }
+    ]
   },
 
   /* ───────────── ACT 2 ───────────── */
