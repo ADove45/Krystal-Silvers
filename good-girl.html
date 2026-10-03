@@ -522,14 +522,16 @@ He is waiting. The whole restaurant seems to be waiting.
 
 You have to decide who you will be at this table.`,
     choices: [
-      { label: "Let yourself lean into it. The part and the feeling can be one thing.", to: "terms", fx: s => { s.trust += 1; s.f.leanedIn = true; } },
-      { label: "Keep your face still and your heart locked. Give him only what the job needs.", to: "terms", fx: s => { s.nerve += 1; s.secrets += 1; s.f.guardedDinner = true; } }
+      { label: "Let yourself lean into it. The part and the feeling can be one thing.", to: "herFirst", fx: s => { s.trust += 1; s.f.leanedIn = true; } },
+      { label: "Keep your face still and your heart locked. Give him only what the job needs.", to: "herFirst", fx: s => { s.nerve += 1; s.secrets += 1; s.f.guardedDinner = true; } }
     ]
   },
   terms: {
     act: 1, ch: "5–6", pov: "HER", title: "Champagne Wishes and Foolish Dreams",
     decision: "Dante’s terms",
-    text: `“I need you to understand what it means to be my woman,” Dante says. “You belong to me. You are loyal to me, honest with me, obedient to me.”
+    text: s => `${s.f.herFirst
+      ? "You wake in his bed to find him already awake, watching you, his hand resting on your hip like it belongs there.\n\n“You were a virgin,” he says quietly. “You gave me that, and you did not have to. Do you understand what that does to a man like me?”\n\nYou open your mouth, but he is not finished.\n\n“I am not sharing you. I am not letting anyone touch you, now or ever. You are mine, Layla, and I will not hear otherwise.”\n\n"
+      : ""}“I need you to understand what it means to be my woman,” Dante says. “You belong to me. You are loyal to me, honest with me, obedient to me.”
 
 “And what do I get in return?”
 
@@ -543,8 +545,8 @@ Your mother’s split lip. Marco’s smile. Anton outside in a parked car. All o
 
 “Do you accept all of my terms, Layla?”`,
     choices: [
-      { label: "“Yes. I accept.” Say nothing about Marco.", to: s => (s.f.sentHome || s.f.refusedRide) ? "herFirst" : "warning", fx: s => { s.trust += 1; s.secrets += 2; } },
-      { label: "“There is something I can’t tell you. Not yet.”", to: s => (s.f.sentHome || s.f.refusedRide) ? "herFirst" : "warning", fx: s => { s.trust += 1; s.secrets += 1; s.nerve += 1; s.f.loophole = true; } },
+      { label: "“Yes. I accept.” Say nothing about Marco.", to: "warning", fx: s => { s.trust += 1; s.secrets += 2; } },
+      { label: "“There is something I can’t tell you. Not yet.”", to: "warning", fx: s => { s.trust += 1; s.secrets += 1; s.nerve += 1; s.f.loophole = true; } },
       { label: "Tell him everything. Marco. Your mother. The mission.", to: "confession", fx: s => { s.trust += 2; s.f.truth = true; } }
     ]
   },
@@ -565,12 +567,12 @@ When Dante comes back he has taken off his jacket. He crouches in front of your 
 “When I can reach her without getting her killed.” His voice drops. “I keep what’s mine, Layla. That now includes your problems.”
 
 Nicolo does not look convinced. But Dante says, “Good girl,” and for the first time in two days you breathe.`,
-    choices: [{ label: "Move into the penthouse", to: s => (s.f.sentHome || s.f.refusedRide) ? "herFirst" : "warning" }]
+    choices: [{ label: "Move into the penthouse", to: "warning" }]
   },
 
   herFirst: {
     act: 1, ch: "6", pov: "HER", title: "The One Who Waited",
-    text: s => `The penthouse is quiet. Dante shuts the door and loosens his cuffs, and he looks at you like he is trying to work something out.
+    text: s => `After dinner the car takes you to his penthouse. It is quiet. Dante shuts the door and loosens his cuffs, and he looks at you like he is trying to work something out.
 
 “You never said it,” he says. “Not in the kitchen, not at dinner. Every other woman gives me that word before I ask for it.”
 
@@ -616,7 +618,7 @@ You think of the phone in your bag, the one Marco will call. You could still tel
 
 You stay.`,
     choices: [
-      { label: "Close your eyes and fall asleep in his arms.", to: "warning", fx: s => { s.trust += 1; s.f.daddy = true; s.f.firstTime = true; s.f.herFirst = true; } }
+      { label: "Close your eyes and fall asleep in his arms.", to: "terms", fx: s => { s.trust += 1; s.f.daddy = true; s.f.firstTime = true; s.f.herFirst = true; } }
     ]
   },
 
