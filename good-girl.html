@@ -377,10 +377,24 @@ He carries you down a hallway you barely see. A door. Lamplight. The slow, delib
 
 “Beautiful,” he murmurs. “Look at me, Layla. I want you to look at me.”
 
-You do. And the rest of the night belongs to the two of you alone: his hands learning you, your name on his lips, the silk on the floor, the slow climb and the long, shuddering fall. Nothing in your life has ever felt so right, or so dangerous.`,
+You do. But when his hand drifts lower and you tense, just slightly, just a breath, he feels it. Everything in him goes still.
+
+“Layla.” His forehead rests against yours. “Is this…?”
+
+Your face burns. You had planned to hide it, as if it were something shameful. “I’ve never,” you whisper. “You’re the first. I didn’t think it would matter.”
+
+For a long moment he says nothing. You brace for him to pull away. Instead he cups your face in both hands, and when he speaks, the roughness in his voice has gone, and what is left is something much worse for your heart.
+
+“It matters,” he says. “I was not expecting this, and I will not pretend I am not honored.” His thumb wipes a tear you did not know you had shed. “We stop whenever you say. We go as slowly as you need. Do you hear me? You are in charge of this, not me.”
+
+“I don’t want to stop,” you say, and you mean it more than you have ever meant anything.
+
+So he is patient with you in ways you did not know a man could be. Every touch is a question, and every answer you give him he honors. He tells you what he is going to do before he does it. He murmurs your name, *good, so good, just breathe for me*, until the nerves dissolve into something warm and trembling. The silk is on the floor. The lamp is low. There is a moment of sharp, startled pain, and he holds absolutely still, kissing the corner of your mouth, until you are the one who moves against him.
+
+And the rest of the night belongs to the two of you alone: his hands learning you, your name on his lips, the slow climb and the long, shuddering fall. Nothing in your life has ever felt so right, or so dangerous.`,
     choices: [
-      { label: "Hold on to him. Stay until morning.", to: "morning", fx: s => { s.trust += 1; s.f.stayed = true; } },
-      { label: "Memorize every second. Tonight is the only thing that is yours.", to: "morning", fx: s => { s.nerve += 1; s.f.guarded = true; } }
+      { label: "Hold on to him. Stay until morning.", to: "morning", fx: s => { s.trust += 1; s.f.stayed = true; s.f.firstTime = true; } },
+      { label: "Memorize every second. Tonight is the only thing that is yours.", to: "morning", fx: s => { s.nerve += 1; s.f.guarded = true; s.f.firstTime = true; } }
     ]
   },
   sentHome: {
@@ -434,6 +448,8 @@ You sleep for three hours and dream about a stranger’s hand on the small of yo
 ${s.f.daddy
       ? "When he stirs, he pulls you closer. “Good morning, good girl,” he murmurs against your hair, and his thumb traces your lower lip. Last night you gave him that word, and it still sounds like a promise."
       : "When he stirs, he finds you watching and smiles, slow and lazy. “Before sunrise,” he says. “I promised, didn’t I?” He kisses you, and the question you refused to let go of last night melts a little more."}
+
+There is a soreness low in your body that you are strangely proud of, and he notices you shifting. “Are you all right?” he asks quietly, and no one has ever asked you that and meant it. “I meant what I said last night. You were the first, and I will not forget it.”
 
 Sunrise has come and gone, and he still hasn’t told you his name.
 
