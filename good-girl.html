@@ -350,8 +350,37 @@ You are breathless. “Thank you, Mister…”
 
 His hand cups your cheek. “Call me Daddy.”`,
     choices: [
-      { label: "“Thank you… Daddy.”", to: "morning", fx: s => { s.trust += 1; s.f.daddy = true; } },
-      { label: "“Your name first. Then we’ll see.”", to: "morning", fx: s => { s.nerve += 1; } }
+      { label: "“Thank you… Daddy.”", to: "firstnight", fx: s => { s.trust += 1; s.f.daddy = true; } },
+      { label: "“Your name first. Then we’ll see.”", to: "firstnight", fx: s => { s.nerve += 1; } }
+    ]
+  },
+  firstnight: {
+    act: 1, ch: "3", pov: "HER", title: "Before Sunrise",
+    decision: "The first night",
+    text: s => `${s.f.daddy
+      ? "The word hangs in the air between you. His eyes darken, and the quiet in the kitchen changes shape."
+      : "He studies you, the corner of his mouth lifting. “Stubborn. I like that.” The quiet in the kitchen changes shape."}
+
+He sets down the spoon. He does not hurry. That is the part that undoes you.
+
+His hand slides from your cheek to the back of your neck, and his thumb finds the pulse there as if he wants to know exactly how fast it is going. “Tell me to stop,” he says against your mouth, “and I will. Right now. I will make you coffee and drive you home and never say another word.”
+
+You do not tell him to stop.
+
+The kiss is slow at first, then it isn’t. Your back meets the cool edge of the counter. His hands span your waist and lift you onto it as though you weigh nothing, and the midnight blue silk rides up your thighs. His mouth is at your jaw, your throat, the hollow of your collarbone. Each kiss leaves a small fire behind.
+
+“Do you know what you do to me?” His voice is rough. “I have spent twenty years being careful. You walked into a ballroom and I forgot every rule I have.”
+
+You find the buttons of his shirt with shaking fingers. He lets you. When your palm flattens against his chest you feel his heart pounding as hard as your own.
+
+He carries you down a hallway you barely see. A door. Lamplight. The slow, deliberate drag of a zipper, and cool air on your bare back, and his breath catching as he looks at you like you are something he has been waiting a very long time to find.
+
+“Beautiful,” he murmurs. “Look at me, Layla. I want you to look at me.”
+
+You do. And the rest of the night belongs to the two of you alone: his hands learning you, your name on his lips, the silk on the floor, the slow climb and the long, shuddering fall. Nothing in your life has ever felt so safe, or so dangerous.`,
+    choices: [
+      { label: "Hold on to him. Stay until morning.", to: "morning", fx: s => { s.trust += 1; } },
+      { label: "Memorize every second. Tonight is the only thing that is yours.", to: "morning", fx: s => { s.nerve += 1; } }
     ]
   },
   antoncar: {
@@ -372,10 +401,10 @@ You sleep for three hours and dream about a stranger’s hand on the small of yo
   morning: {
     act: 1, ch: "3–4", pov: "HER", title: "A Morning of Revelation",
     text: s => `${s.f.daddy
-      ? "“Good girl,” he says, and his thumb traces your lower lip."
-      : "He laughs, low. “Before sunrise. I promised.” He kisses you again, and the argument dissolves."}
+      ? "“Good girl,” he whispers against your hair, and his thumb traces your lower lip."
+      : "He laughs, low, into your shoulder. “Before sunrise. I promised.” He kisses you again, and the last of the argument dissolves."}
 
-The pasta goes cold. You have never been wanted like this. You fall asleep with his arm around you, in a bed you have never seen before.
+The pasta goes cold on the counter. You have never been wanted like this. You fall asleep with his arm around you, in a bed you have never seen before.
 
 Sunrise comes and goes and he still hasn’t told you.
 
