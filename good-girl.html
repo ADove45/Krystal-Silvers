@@ -118,6 +118,26 @@ h1, h2 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap: ba
 .cta:hover { filter: brightness(1.12); }
 .note { font-size: 1.05rem; color: var(--muted); max-width: 34rem; margin: 0; }
 
+/* ── the novel: cover + link ── */
+.book { display: flex; align-items: center; gap: 1.2rem; max-width: 36rem; padding: 1rem; border: 1px solid var(--line); background: var(--surface); color: inherit; text-decoration: none; }
+.book:hover { border-color: var(--accent); }
+.book img { flex: none; width: min(34%, 8.5rem); height: auto; display: block; box-shadow: 0 6px 18px rgba(0,0,0,0.35); }
+.book-text { display: flex; flex-direction: column; gap: 0.35rem; min-width: 0; }
+.book-kicker { font-family: var(--label); font-size: 0.95rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+.book-title { font-family: var(--display); font-style: italic; font-size: clamp(1.4rem, 5vw, 1.8rem); line-height: 1.15; }
+.book-go { font-family: var(--label); font-weight: 600; font-size: 1.05rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-top: 0.3rem; }
+
+/* ── email sign-up before the story ── */
+.gate { gap: 1.4rem; padding-top: 1rem; }
+.gate h1 { font-size: clamp(2.2rem, 9vw, 3.6rem); line-height: 1.02; font-style: italic; }
+.gate form { display: flex; flex-direction: column; gap: 0.8rem; max-width: 30rem; }
+.gate label { font-family: var(--label); font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+.gate input[type="email"] { font: inherit; font-size: 1.25rem; width: 100%; min-height: 3.4rem; padding: 0.7rem 0.9rem; background: var(--surface); color: var(--fg); border: 1px solid var(--line); border-radius: 0; }
+.gate input[type="email"]:focus-visible { border-color: var(--accent); }
+.gate .cta { cursor: pointer; }
+.skip { align-self: flex-start; background: none; border: 0; padding: 0.6rem 0; font-family: var(--label); font-size: 1.05rem; color: var(--muted); text-decoration: underline; text-underline-offset: 0.2em; }
+.skip:hover { color: var(--fg); }
+
 /* ── ending ── */
 .end-kind { color: var(--gold); }
 .end-title { font-size: clamp(2.3rem, 9vw, 4rem); line-height: 1; font-style: italic; }
@@ -171,7 +191,7 @@ hr.rule { border: 0; border-top: 1px solid var(--line); width: 100%; margin: 0.4
 .choice { min-height: 3rem; }
 .choice:focus-visible { border-color: var(--accent); }
 html { scroll-padding-top: 4rem; }
-@media print { .bar, .choices, .cta-row { display: none; } }
+@media print { .bar, .choices, .cta-row, .book { display: none; } }
 </style>
 </head>
 <body>
@@ -195,16 +215,13 @@ html { scroll-padding-top: 4rem; }
   <div class="panel-in" id="panel-in"></div>
 </section>
 
+<script src="config.js"></script>
 <script>
-/* ════════════════════════════════════════════════════════════════
-   SETTINGS — edit these two lines for your own website.
-   BOOK_URL: paste your sales link between the quotes to show a
-   "Read the full novel" button on the cover and on every ending.
-   ════════════════════════════════════════════════════════════════ */
-const CONFIG = {
-  BOOK_URL: "",
+/* Settings live in config.js (sales link, cover image, email sign-up). */
+const CONFIG = Object.assign({
+  BOOK_URL: "", COVER_IMG: "", EMAIL_FORM_URL: "", EMAIL_FIELD: "email", EMAIL_REQUIRED: false,
   SAVE_KEY: "captivating-good-girl-v1"
-};
+}, window.KS_SITE || {});
 
 /* Mafia Daddy's Captivating Good Girl — interactive adaptation
    Story data. Each scene: act, ch (source chapters in the novel), pov, title, text, choices.
@@ -1454,7 +1471,13 @@ function coldCheck(s) { return s.secrets >= 6 && s.trust <= 1; }
   const esc = t => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   const fmt = t => esc(t).replace(/\*([^*]+)\*/g, "<em>$1</em>");
   const paras = t => t.split(/\n\n+/).filter(p => p.trim()).map(p => "<p>" + fmt(p.trim()) + "</p>").join("");
-  const bookBtn = () => CONFIG.BOOK_URL ? '<a class="cta ghost" href="' + esc(CONFIG.BOOK_URL) + '" target="_blank" rel="noopener">Read the full novel</a>' : "";
+  const TITLE = "Mafia Daddy’s Captivating Good Girl";
+  const attr = t => esc(t).replace(/"/g, "&quot;");
+  const bookBlock = () => CONFIG.BOOK_URL
+    ? '<a class="book" href="' + attr(CONFIG.BOOK_URL) + '" target="_blank" rel="noopener">' +
+      (CONFIG.COVER_IMG ? '<img src="' + attr(CONFIG.COVER_IMG) + '" alt="Book cover of ' + attr(TITLE) + ' by Krystal Silvers" onerror="this.remove()">' : "") +
+      '<span class="book-text"><span class="book-kicker">The novel</span><span class="book-title">' + esc(TITLE) + '</span><span class="book-go">Read the full novel →</span></span></a>'
+    : "";
 
   function drawActs(n) {
     $("acts").innerHTML = ACTS.map(a => '<i class="' + (a.n <= n ? "on" : "") + '"></i>').join("");
@@ -1477,7 +1500,7 @@ function coldCheck(s) { return s.secrets >= 6 && s.trust <= 1; }
       html += '<p class="tally">You have found <b>' + found.length + " of " + Object.keys(ENDINGS).length + "</b> endings.</p>";
       html += '<div class="cta-row"><button class="cta" type="button" data-do="again">Play again</button>' +
         '<button class="cta ghost" type="button" data-do="back">Change your last choice</button>' +
-        '<button class="cta ghost" type="button" data-do="map">See your path</button>' + bookBtn() + "</div>";
+        '<button class="cta ghost" type="button" data-do="map">See your path</button></div>' + bookBlock();
     } else {
       const him = n.pov === "HIM";
       html += '<div class="eyebrow"><span class="pov' + (him ? " him" : "") + '">' + n.pov + "</span><span>Act " + n.act + " · " + esc(act.name) + "</span><span>From chapter" + (/[–,]/.test(n.ch) ? "s " : " ") + esc(n.ch) + "</span></div>";
@@ -1511,9 +1534,47 @@ function coldCheck(s) { return s.secrets >= 6 && s.trust <= 1; }
       (canResume ? '<button class="cta" type="button" data-do="resume">Continue</button><button class="cta ghost" type="button" data-do="begin">Start over</button>'
                  : '<button class="cta" type="button" data-do="begin">Begin</button>') +
       (found.length ? '<button class="cta ghost" type="button" data-do="map">Endings found: ' + found.length + " of " + Object.keys(ENDINGS).length + "</button>" : "") +
-      bookBtn() + "</div>" +
+      "</div>" + bookBlock() +
       '<p class="note">For adult readers. This story contains violence, captivity and mature themes. Your choices are saved on this device. Press Listen at the top to have each scene read aloud.</p>';
   }
+
+  const GATE_KEY = CONFIG.SAVE_KEY + "-signup";
+  function gateState() { try { return localStorage.getItem(GATE_KEY) || ""; } catch (e) { return ""; } }
+  function gateSet(v) { try { localStorage.setItem(GATE_KEY, v); } catch (e) {} }
+  function needGate() {
+    if (!CONFIG.EMAIL_FORM_URL) return false;
+    const g = gateState();
+    return CONFIG.EMAIL_REQUIRED ? g !== "joined" : !g;
+  }
+  function gate() {
+    stopSpeech();
+    drawActs(0);
+    view.className = "view gate fade";
+    view.innerHTML =
+      '<div class="eyebrow"><span class="pov">HER</span><span>Before you begin</span></div>' +
+      '<h1 id="head" tabindex="-1">Stay on the list</h1>' +
+      '<p class="lede">Leave your email and Krystal Silvers will tell you when the next interactive story and the next novel arrive.</p>' +
+      '<form id="signup" novalidate>' +
+      '<label for="signup-email">Your email address</label>' +
+      '<input id="signup-email" type="email" name="' + attr(CONFIG.EMAIL_FIELD) + '" autocomplete="email" inputmode="email" placeholder="you@example.com" required>' +
+      '<p class="note" id="signup-err" role="alert" hidden>Please enter a valid email address.</p>' +
+      '<button class="cta" type="submit">Join and begin</button>' +
+      "</form>" +
+      (CONFIG.EMAIL_REQUIRED ? "" : '<button class="skip" type="button" data-do="skip">No thanks, just start the story</button>') +
+      '<p class="note">For adult readers. You can unsubscribe at any time.</p>';
+    window.scrollTo(0, 0);
+    const h = $("head"); if (h) h.focus({ preventScroll: true });
+  }
+  document.addEventListener("submit", ev => {
+    if (ev.target.id !== "signup") return;
+    ev.preventDefault();
+    const box = $("signup-email"), v = box.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { $("signup-err").hidden = false; box.focus(); return; }
+    const data = new FormData(); data.append(CONFIG.EMAIL_FIELD, v);
+    try { fetch(CONFIG.EMAIL_FORM_URL, { method: "POST", mode: "no-cors", body: data }).catch(() => {}); } catch (e) {}
+    gateSet("joined");
+    begin();
+  });
 
   function begin() { st = { id: "knock", s: fresh(), hist: [], log: {} }; confirmRestart = false; render(true); }
   function resume() { const d = st.saved; st = { id: d.id, s: d.s, hist: d.hist || [], log: d.log || {} }; render(true); }
@@ -1679,7 +1740,8 @@ function coldCheck(s) { return s.secrets >= 6 && s.trust <= 1; }
     if (!b) return;
     if (b.dataset.i !== undefined) return choose(+b.dataset.i);
     switch (b.dataset.do) {
-      case "begin": closeMap(); return begin();
+      case "begin": closeMap(); return needGate() ? gate() : begin();
+      case "skip": gateSet("skipped"); return begin();
       case "resume": return resume();
       case "again": return begin();
       case "back": return back();
