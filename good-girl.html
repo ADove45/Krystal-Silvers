@@ -126,6 +126,8 @@ h1, h2 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap: ba
 .book-kicker { font-family: var(--label); font-size: 0.95rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
 .book-title { font-family: var(--display); font-style: italic; font-size: clamp(1.4rem, 5vw, 1.8rem); line-height: 1.15; }
 .book-go { font-family: var(--label); font-weight: 600; font-size: 1.05rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-top: 0.3rem; }
+.book-foot { margin-top: 2.6rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
+.book-foot:empty { display: none; }
 
 /* ── email sign-up before the story ── */
 .gate { gap: 1.4rem; padding-top: 1rem; }
@@ -209,7 +211,7 @@ html { scroll-padding-top: 4rem; }
   </div>
 </header>
 
-<main class="page"><div id="view" class="view"></div></main>
+<main class="page"><div id="view" class="view"></div><div id="book-foot" class="book-foot"></div></main>
 
 <section class="panel" id="panel" hidden aria-label="Story map">
   <div class="panel-in" id="panel-in"></div>
@@ -1476,7 +1478,7 @@ function coldCheck(s) { return s.secrets >= 6 && s.trust <= 1; }
   const bookBlock = () => CONFIG.BOOK_URL
     ? '<a class="book" href="' + attr(CONFIG.BOOK_URL) + '" target="_blank" rel="noopener">' +
       (CONFIG.COVER_IMG ? '<img src="' + attr(CONFIG.COVER_IMG) + '" alt="Book cover of ' + attr(TITLE) + ' by Krystal Silvers" onerror="this.remove()">' : "") +
-      '<span class="book-text"><span class="book-kicker">The novel</span><span class="book-title">' + esc(TITLE) + '</span><span class="book-go">Read the full novel →</span></span></a>'
+      '<span class="book-text"><span class="book-kicker">The novel</span><span class="book-title">' + esc(TITLE) + '</span><span class="book-go">Buy the book →</span></span></a>'
     : "";
 
   function drawActs(n) {
@@ -1500,7 +1502,7 @@ function coldCheck(s) { return s.secrets >= 6 && s.trust <= 1; }
       html += '<p class="tally">You have found <b>' + found.length + " of " + Object.keys(ENDINGS).length + "</b> endings.</p>";
       html += '<div class="cta-row"><button class="cta" type="button" data-do="again">Play again</button>' +
         '<button class="cta ghost" type="button" data-do="back">Change your last choice</button>' +
-        '<button class="cta ghost" type="button" data-do="map">See your path</button></div>' + bookBlock();
+        '<button class="cta ghost" type="button" data-do="map">See your path</button></div>';
     } else {
       const him = n.pov === "HIM";
       html += '<div class="eyebrow"><span class="pov' + (him ? " him" : "") + '">' + n.pov + "</span><span>Act " + n.act + " · " + esc(act.name) + "</span><span>From chapter" + (/[–,]/.test(n.ch) ? "s " : " ") + esc(n.ch) + "</span></div>";
@@ -1534,7 +1536,7 @@ function coldCheck(s) { return s.secrets >= 6 && s.trust <= 1; }
       (canResume ? '<button class="cta" type="button" data-do="resume">Continue</button><button class="cta ghost" type="button" data-do="begin">Start over</button>'
                  : '<button class="cta" type="button" data-do="begin">Begin</button>') +
       (found.length ? '<button class="cta ghost" type="button" data-do="map">Endings found: ' + found.length + " of " + Object.keys(ENDINGS).length + "</button>" : "") +
-      "</div>" + bookBlock() +
+      "</div>" +
       '<p class="note">For adult readers. This story contains violence, captivity and mature themes. Your choices are saved on this device. Press Listen at the top to have each scene read aloud.</p>';
   }
 
@@ -1761,6 +1763,7 @@ function coldCheck(s) { return s.secrets >= 6 && s.trust <= 1; }
 
   function start(data) {
     load();
+    $("book-foot").innerHTML = bookBlock();
     if (data && data.id && STORY[data.id]) { st = { id: data.id, s: data.s, hist: data.hist || [], log: data.log || {} }; }
     render(false);
   }

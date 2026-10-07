@@ -7,7 +7,7 @@ Mafia Romance interactive stories, hosted on GitHub Pages. No build step.
 - `config.js` – the one settings file both pages read: the novel's sales link, the cover image file name, and the email sign-up address.
 
 ## Settings (`config.js`)
-- `BOOK_URL` – sales link for the novel. Shows the cover and a link on the landing page, the game's title page and every ending.
+- `BOOK_URL` – sales link for the novel. Shows the cover and a "Buy the book" link on the landing page and at the bottom of every screen of the game.
 - `COVER_IMG` – cover image file in this folder (default `cover.jpg`).
 - `EMAIL_FORM_URL` – form address from your email service. Readers are asked for an email once, before the story starts.
 - `EMAIL_FIELD` – name of the email box your service expects (usually `email`).
