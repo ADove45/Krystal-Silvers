@@ -14,7 +14,7 @@
                    true  = readers must give an email to start.
    ════════════════════════════════════════════════════════════════ */
 window.KS_SITE = {
-  BOOK_URL: "",
+  BOOK_URL: "https://www.amazon.com/dp/B0HF4172FC",
   COVER_IMG: "cover.jpg",
   EMAIL_FORM_URL: "",
   EMAIL_FIELD: "email",
