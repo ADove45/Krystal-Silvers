@@ -10,6 +10,10 @@
                    readers are not asked for an email.
    EMAIL_FIELD     The name your email service uses for the email box
                    (usually "email"; Mailchimp uses "EMAIL").
+   EMAIL_EXTRA     Extra hidden values your email service needs.
+                   For GetResponse, EMAIL_FORM_URL is
+                   "https://app.getresponse.com/add_subscriber.html"
+                   and the list token goes in campaign_token below.
    EMAIL_REQUIRED  false = readers may skip the sign-up.
                    true  = readers must give an email to start.
    ════════════════════════════════════════════════════════════════ */
@@ -18,5 +22,6 @@ window.KS_SITE = {
   COVER_IMG: "cover.jpg",
   EMAIL_FORM_URL: "",
   EMAIL_FIELD: "email",
+  EMAIL_EXTRA: { campaign_token: "", start_day: "0" },
   EMAIL_REQUIRED: false
 };

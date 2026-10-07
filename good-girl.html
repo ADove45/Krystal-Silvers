@@ -219,7 +219,7 @@ html { scroll-padding-top: 4rem; }
 <script>
 /* Settings live in config.js (sales link, cover image, email sign-up). */
 const CONFIG = Object.assign({
-  BOOK_URL: "", COVER_IMG: "", EMAIL_FORM_URL: "", EMAIL_FIELD: "email", EMAIL_REQUIRED: false,
+  BOOK_URL: "", COVER_IMG: "", EMAIL_FORM_URL: "", EMAIL_FIELD: "email", EMAIL_EXTRA: {}, EMAIL_REQUIRED: false,
   SAVE_KEY: "captivating-good-girl-v1"
 }, window.KS_SITE || {});
 
@@ -1570,7 +1570,8 @@ function coldCheck(s) { return s.secrets >= 6 && s.trust <= 1; }
     ev.preventDefault();
     const box = $("signup-email"), v = box.value.trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { $("signup-err").hidden = false; box.focus(); return; }
-    const data = new FormData(); data.append(CONFIG.EMAIL_FIELD, v);
+    const data = new URLSearchParams(); data.append(CONFIG.EMAIL_FIELD, v);
+    Object.keys(CONFIG.EMAIL_EXTRA || {}).forEach(k => data.append(k, CONFIG.EMAIL_EXTRA[k]));
     try { fetch(CONFIG.EMAIL_FORM_URL, { method: "POST", mode: "no-cors", body: data }).catch(() => {}); } catch (e) {}
     gateSet("joined");
     begin();

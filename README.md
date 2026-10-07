@@ -11,6 +11,7 @@ Mafia Romance interactive stories, hosted on GitHub Pages. No build step.
 - `COVER_IMG` – cover image file in this folder (default `cover.jpg`).
 - `EMAIL_FORM_URL` – form address from your email service. Readers are asked for an email once, before the story starts.
 - `EMAIL_FIELD` – name of the email box your service expects (usually `email`).
+- `EMAIL_EXTRA` – extra hidden values the service needs. For GetResponse: `EMAIL_FORM_URL` is `https://app.getresponse.com/add_subscriber.html` and the list token goes in `campaign_token`.
 - `EMAIL_REQUIRED` – `false` lets readers skip the sign-up; `true` makes it required.
 
 Anything left blank stays hidden.
