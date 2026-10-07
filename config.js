@@ -20,8 +20,8 @@
 window.KS_SITE = {
   BOOK_URL: "https://www.amazon.com/dp/B0HF4172FC",
   COVER_IMG: "cover.jpg",
-  EMAIL_FORM_URL: "",
+  EMAIL_FORM_URL: "https://app.getresponse.com/add_subscriber.html",
   EMAIL_FIELD: "email",
-  EMAIL_EXTRA: { campaign_token: "", start_day: "0" },
+  EMAIL_EXTRA: { campaign_token: "7CPQP", start_day: "0" },
   EMAIL_REQUIRED: false
 };
